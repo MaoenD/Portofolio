@@ -113,10 +113,10 @@ h1.display-1 {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: black;
+  background-color: rgb(241, 17, 185);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,7 +131,7 @@ h1.display-1 {
 
 /* Ensure no hover effect on Scroll Button */
 .scroll-btn:hover {
-  background-color: black;
+  background-color: rgb(241, 17, 185);
   color: white;
 }
 
