@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin </title>
+    <title>Admin</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
@@ -11,6 +11,46 @@
         }
         .form-section {
             margin-bottom: 30px;
+        }
+        .data-section {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto; 
+            overflow-x: auto;
+        }
+        .data-item {
+            display: flex; 
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            white-space: nowrap; 
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            margin-left: 10px; 
+        }
+
+        .btn {
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer; 
+        }
+        
+        .btn-primary {
+            background-color: blue; 
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: darkblue; 
         }
     </style>
 </head>
@@ -21,9 +61,10 @@
 
         <div class="form-section">
             <h3>1. Get all</h3>
-            <form action="/admin1/pf" method="GET">
-                <button type="submit" class="btn btn-primary">Get</button>
-            </form>
+        </div>
+
+        <div class="data-section">
+            <div id="dataOutput"></div>
         </div>
 
         <div class="form-section">
@@ -33,7 +74,9 @@
                     <label for="getPfId">ID du projet :</label>
                     <input type="text" id="getPfId" name="id" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Get</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Get</button>
+                </div>
             </form>
         </div>
 
@@ -60,7 +103,9 @@
                     <label for="duration">Durée :</label>
                     <input type="text" id="duration" name="Durée" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-success">Post</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
             </form>
         </div>
 
@@ -71,6 +116,9 @@
                 <div class="form-group">
                     <label for="updatePfId">ID :</label>
                     <input type="text" id="updatePfId" name="id" class="form-control" required>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-custom" onclick="checkId()">Vérifier</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="updatePfName">Nom :</label>
@@ -92,10 +140,38 @@
                     <label for="updateDuration">Durée :</label>
                     <input type="text" id="updateDuration" name="Durée" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-warning">MAJ</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">MAJ</button>
+                </div>
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dataOutput = document.getElementById('dataOutput');
+
+            const fetchData = () => {
+                fetch('/admin1/pf')
+                    .then(response => response.json())
+                    .then(data => {
+                        dataOutput.innerHTML = '';
+                        data.forEach(item => {
+                            const dataItem = document.createElement('div');
+                            dataItem.className = 'data-item';
+                            dataItem.textContent = `ID: ${item.id}, Nom: ${item.Nom_Projet}, Description: ${item.Description}, Début: ${item.Date_Debut}, Fin: ${item.Date_Fin}, Durée: ${item.Durée}`;
+                            dataOutput.appendChild(dataItem);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la récupération des données :', error);
+                        dataOutput.textContent = 'Erreur lors de la récupération des données.';
+                    });
+            };
+
+            fetchData();
+        });
+    </script>
 
 </body>
 </html>
