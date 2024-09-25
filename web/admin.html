@@ -61,7 +61,13 @@
 
         <div class="form-section">
             <h3>1. Get all</h3>
-        </div>
+            {{range .Projets}}
+            <li>
+                <p>{{.Id_Projet}}</p>
+                <p>{{.Nom_Projet}}</p>
+            </li>
+            {{end}}
+           </div>
 
         <div class="data-section">
             <div id="dataOutput"></div>

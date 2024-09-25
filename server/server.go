@@ -2,6 +2,7 @@ package server
 
 import (
 	"Portefolio/GestionBDD"
+	"Portefolio/HtmlLink"
 	"Portefolio/database"
 	"database/sql"
 	"log"
@@ -17,8 +18,11 @@ func Start() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	ProjetId, err := GestionBDD.GetProjetById(db, 1)
-	log.Println("ID : ", ProjetId.Id_Projet, ProjetId.Nom_Projet)
+
+	GestionBDD.PostProjet(db, "test", "test", "test", "test", "test")
+
+	http.HandleFunc("/admin", HtmlLink.HandleAdminPage)
+
 	log.Println("Listening on :8080...")
 	// Starting the server on port 8080
 
