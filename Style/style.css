@@ -1,7 +1,6 @@
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////// General Styles //////////////////////////*/
 /*//////////////////////////////////////////////////////////////////*/
-
 body, html {
   margin: 0;
   padding: 0;
@@ -40,6 +39,15 @@ body, html {
   border-radius: 50%;
   margin-bottom: 20px;
 }
+
+.profile-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 /* Social Media Icon Styles */
 .social-icons {
   display: flex;
@@ -67,17 +75,23 @@ body, html {
 }
 
 /* Navigation Links */
-.nav-pills .nav-link {
+.nav-link {
   color: white;
   margin-bottom: 20px;
+  padding: 10px 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
 }
 
-.nav-pills .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
+.nav-link i {
+  margin-right: 10px;
+  font-size: 20px;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  color: #000000;
 }
 
 /* Right Column Styles */
@@ -135,6 +149,97 @@ h1.display-1 {
   color: white;
 }
 
+/* Typing text styling */
+.typewriter-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 6px solid white;
+  animation: blink-cursor 0.7s step-end infinite;
+}
+
+/* Blinking cursor effect */
+@keyframes blink-cursor {
+  from {
+    border-right-color: white;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/*//////////////////////////////////////////////////////////////////*/
+/*////////// MEDIA QUERIES FOR MOBILE RESPONSIVENESS ///////////////*/
+/*//////////////////////////////////////////////////////////////////*/
+
+@media (max-width: 768px) {
+
+  /* Make the left column collapse to the top */
+  .left-column {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+  }
+
+  /* Center the profile picture and reduce its size */
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Adjust the title font size */
+  .profile-title {
+    font-size: 20px;
+  }
+
+  /* Stack social icons and reduce their size */
+  .social-icons a {
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Adjust nav links for mobile */
+  .nav-link {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .nav-link i {
+    font-size: 18px;
+  }
+
+  /* Full width right column */
+  .right-column {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  /* Adjust the section heights */
+  .section-full-height {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  /* Adjust title font size right column */
+  h1.display-1 {
+    font-size: 2.5rem;
+  }
+
+  /* Adjust scroll button size */
+  .scroll-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-btn i {
+    font-size: 20px;
+  }
+}
+
 
 /*//////////////////////////////////////////////////////////////////*/
 /*//////////////////////// Admin Page Styles ///////////////////////*/
@@ -164,25 +269,26 @@ h1.display-1 {
   white-space: nowrap;
 }
 
-.admin-button-group {
+/* Updated Button Alignment and Spacing */
+.button-group {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
 }
 
-.admin-btn-primary {
-  background-color: #007bff;
-  color: white;
-  margin-left: 10px;
+
+.form-section, .data-section {
+  margin-bottom: 100px; /* Increased space between sections */
 }
 
-.admin-btn-primary:hover {
-  background-color: darkblue;
+/* Smaller Input Fields */
+.form-control {
+  width: 50%; /* Reduced size of input fields */
+  display: inline-block;
 }
 
 .btn {
   padding: 10px 15px; 
   border: none; 
   border-radius: 5px;
-  cursor: pointer; 
+  cursor: pointer;
 }

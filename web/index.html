@@ -16,7 +16,7 @@
                 <div class="profile-pic-container">
                     <img src="/ressource/Profil.jpg" alt="Profile Picture" class="profile-pic">
                 </div>
-                
+
                 <!-- Social Media Icons -->
                 <div class="social-icons mb-4">
                     <a href="https://github.com/MaoenD" target="_blank" class="btn btn-outline-light me-2">
@@ -28,18 +28,19 @@
                 </div>
 
                 <!-- Nav Links -->
-                <nav class="nav flex-column nav-pills">
-                    <a class="nav-link" href="#experience">Expérience</a>
-                    <a class="nav-link" href="#formation">Formation</a>
-                    <a class="nav-link" href="#skills">Techniques Maitrisées</a>
-                    <a class="nav-link" href="#contact">Contact</a>
-                </nav>
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="#experience"><i class="bi bi-briefcase"></i> Expérience</a>
+                    <a class="nav-link" href="#formation"><i class="bi bi-book"></i> Formation</a>
+                    <a class="nav-link" href="#skills"><i class="bi bi-gear"></i> Techniques Maitrisées</a>
+                    <a class="nav-link" href="#contact"><i class="bi bi-envelope"></i> Contact</a>
+                </nav>                
             </div>
 
             <!-- Right Column: Content Sections -->
             <div class="col-md-9 right-column scrollable-content">
                 <section id="intro" class="section-full-height bg-image d-flex align-items-center justify-content-center">
-                    <h1 class="display-1 text-white">Guigui</h1>
+                    <!-- Typing Text Effect in the Right Column Intro Section -->
+                    <h1 class="display-1 typewriter-text"></h1>
                 </section>
 
                 <section id="experience" class="section-full-height bg-off-white d-flex align-items-center justify-content-center">
@@ -57,7 +58,6 @@
                 <button id="scrollToIntro" class="scroll-btn btn">
                     <i class="bi bi-arrow-up"></i> <!-- Bootstrap Icon Up -->
                 </button>
-
             </div>
         </div>
     </div>
@@ -85,6 +85,32 @@
                 behavior: 'smooth'
             });
         });
+
+        // Typing Effect Script
+        const texts = ["Guigui", "Enfer", "Damnation", "Lave"];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            document.querySelector('.typewriter-text').textContent = letter;
+
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Delay before typing next word
+            } else {
+                setTimeout(type, 100); // Typing speed
+            }
+        })();
     </script>
 </body>
 </html>
