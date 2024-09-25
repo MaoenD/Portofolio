@@ -1,0 +1,51 @@
+body {
+  padding-top: 50px;
+  overflow-x: hidden; /* Pour éviter le défilement horizontal */
+}
+
+.side-nav {
+  position: fixed;
+  top: 0; /* Fixe la barre de navigation en haut */
+  left: 0;
+  padding: 20px;
+  width: 250px;
+  height: 100%;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  z-index: 1000; /* Pour s'assurer que la sidebar est au-dessus des sections */
+}
+
+.content {
+  margin-left: 270px; /* Laisse de la place pour la sidebar */
+}
+
+section {
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  display: flex;
+  flex-direction: column; /* Aligne les éléments verticalement */
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  padding: 50px 20px; /* Ajoute du padding interne */
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  margin-bottom: 20px; /* Ajoute de l'espace en dessous du titre */
+}
+
+#experiences {
+  background-color: #f1c40f;
+}
+
+#formations {
+  background-color: #e74c3c;
+}
+
+#techniques {
+  background-color: #2ecc71;
+}
+
+#contact {
+  background-color: #3498db;
+}
