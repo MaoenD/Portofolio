@@ -47,11 +47,10 @@ func CreateTable() {
     );
 	`
 
-	fmt.Println("hello")
 	_, err := DB.Exec(query)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Println("Database updated!")
+	log.Println("Table created!")
 }
