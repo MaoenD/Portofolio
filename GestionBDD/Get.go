@@ -5,13 +5,21 @@ import (
 	"log"
 )
 
-func GetAllProjet(db *sql.DB) (string, error) {
-	var allProjet string
-	err := db.QueryRow("SELECT * FROM Projet").Scan(&allProjet)
+func GetAllProjet(db *sql.DB) (Projet, error) {
+	var projet Projet
+	err := db.QueryRow("SELECT * FROM Projet").Scan(&projet.Id_Projet, &projet.Nom_Projet, &projet.Description, &projet.Date_Debut, &projet.Date_Fin, &projet.Durée)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return allProjet, nil
+	return projet, nil
+}
+func GetProjetById(db *sql.DB, id int) (Projet, error) {
+	var projet Projet
+	err := db.QueryRow("SELECT * FROM Projet WHERE Id_Projet = ?", id).Scan(&projet.Id_Projet, &projet.Nom_Projet, &projet.Description, &projet.Date_Debut, &projet.Date_Fin, &projet.Durée)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return projet, nil
 }
 
 func GetProjectNameById(db *sql.DB, id int) (string, error) {
