@@ -1,12 +1,16 @@
 package server
 
 import (
+	"Portefolio/database"
 	"log"
 	"net/http"
 )
 
-// Start initializes and starts the server
+// Function that initializes and starts the server
 func Start() {
+	cfg := database.ReadDB()
+	database.ConnectDB(cfg.DatabaseURL)
+	database.CreateTable()
 
 	log.Println("Listening on :8080...")
 	// Starting the server on port 8080
