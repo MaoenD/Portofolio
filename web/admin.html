@@ -15,16 +15,16 @@
         .data-section {
             margin-top: 20px;
             max-height: 200px;
-            overflow-y: auto; 
+            overflow-y: auto;
             overflow-x: auto;
         }
         .data-item {
-            display: flex; 
+            display: flex;
             border: 1px solid #dee2e6;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 10px;
-            white-space: nowrap; 
+            white-space: nowrap;
         }
         .button-group {
             display: flex;
@@ -34,23 +34,23 @@
         .btn-custom {
             background-color: #007bff;
             color: white;
-            margin-left: 10px; 
+            margin-left: 10px;
         }
 
         .btn {
-            padding: 10px 15px; 
-            border: none; 
+            padding: 10px 15px;
+            border: none;
             border-radius: 5px;
-            cursor: pointer; 
+            cursor: pointer;
         }
-        
+
         .btn-primary {
-            background-color: blue; 
+            background-color: blue;
             color: white;
         }
-        
+
         .btn-primary:hover {
-            background-color: darkblue; 
+            background-color: darkblue;
         }
     </style>
 </head>
@@ -72,7 +72,7 @@
 
         <div class="form-section">
             <h3>2. Get by ID</h3>
-            <form action="/admin1/pf" method="GET">
+            <form action="/admin" method="GET">
                 <div class="form-group">
                     <label for="getPfId">ID du projet :</label>
                     <input type="text" id="getPfId" name="id" class="form-control" required>
@@ -81,6 +81,18 @@
                     <button type="submit" class="btn btn-primary">Get</button>
                 </div>
             </form>
+
+            {{if .SelectedProject}}
+            <div>
+                <h4>Selected Project:</h4>
+                <p>ID: {{.SelectedProject.Id_Projet}}</p>
+                <p>Name: {{.SelectedProject.Nom_Projet}}</p>
+                <p>Description: {{.SelectedProject.Description}}</p>
+                <p>Start: {{.SelectedProject.Date_Debut}}</p>
+                <p>End: {{.SelectedProject.Date_Fin}}</p>
+                <p>Duration: {{.SelectedProject.Durée}}</p>
+            </div>
+            {{end}}
         </div>
 
         <div class="form-section">
