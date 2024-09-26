@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Style/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">     <!-- Bootstrap Icons -->
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../Style/style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    
+        <!-- Add Font Awesome for AWS, CISSP -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -39,42 +46,103 @@
             <!-- Right Column: Content Sections -->
             <div class="col-md-9 right-column scrollable-content">
                 <div class="row">
-                
-                <section id="intro" class="section-full-height bg-image d-flex align-items-center justify-content-center">
-                    <!-- Typing Text Effect in the Right Column Intro Section -->
-                    <h1 class="display-1 typewriter-text"></h1>
-                </section>
-                
+                    <section id="intro" class="section-full-height bg-image d-flex align-items-center justify-content-center">
+                        <h1 class="display-1 typewriter-text"></h1>
+                    </section>
                 </div>
                 
-                <section id="experience" class="section-full-height bg-off-white d-flex align-items-center justify-content-center">
-                    <h1>Expérience</h1>
-                      <ul>
-                      {{range .Projets}}
-                      <li>
-                      <p><h2>{{.Nom_Projet}} </h2>de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}} <br />
-                        {{.Description}}
-                      </p>
-                      </li>
-      
-                       {{end}}
-                      </ul>
-                </section>
+                <div class="container">
+                    <section id="experience" class="section-full-height bg-off-white p-4">
+                        <div class="experience-content">
+                            <h1 class="experience-title">Expérience</h1>
+                            <div class="projects">
+                                {{range .Projets}}
+                                <div>
+                                    <h3 class="project-title">{{.Nom_Projet}}</h3>
+                                    <p>de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}}</p>
+                                    <p>{{.Description}}</p>
+                                </div>
+                                <br/>
+                                {{end}}
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="formation" class="section-full-height bg-off-white p-4"> 
+                        <h1 class="experience-title">Formation</h1>
+                    </section>
 
-                <section id="formation" class="section-full-height bg-light-white d-flex align-items-center justify-content-center">
-                    <h1>Formation</h1>
-                </section>
-                
-                <section id="skills" class="section-full-height bg-whiter-white d-flex align-items-center justify-content-center">
-                    <h1>Techniques Maitrisées</h1>
-                </section>
-                
-                <section id="contact" class="section-full-height bg-almost-white d-flex align-items-center justify-content-center">
-                    <h1>Contact</h1>
-                </section>
+                    <section id="skills" class="section-full-height bg-off-white p-4">
+                        <h1 class="experience-title text-center">Techniques Maitrisées</h1>
+                        <div class="container d-flex align-items-center justify-content-center" style="flex-grow: 1;">
+                            <div class="row g-2 d-flex align-items-center"> <!-- Space between boxes -->
+                    
+                                <!-- Cisco Icon 1 -->
+                                <div class="col-md-6 d-flex justify-content-center">
+                                    <div class="skill-box p-4" style="width: 300px; height: 100px; border: 2px solid #ccc; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <img src="ressource/cisco-icon-1.jpg" alt="Cisco Icon 1" style="width: 50px; height: auto;">
+                                        <p class="text-center ms-3 mb-0">CCNA</p>
+                                    </div>
+                                </div>
+                    
+                                <!-- Cisco Icon 2 -->
+                                <div class="col-md-6 d-flex justify-content-center">
+                                    <div class="skill-box p-4" style="width: 300px; height: 100px; border: 2px solid #ccc; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <img src="ressource/cisco-icon-1.jpg" alt="Cisco Icon 2" style="width: 50px; height: auto;">
+                                        <p class="text-center ms-3 mb-0">CCDA</p>
+                                    </div>
+                                </div>
+                    
+                                <!-- AWS Icon -->
+                                <div class="col-md-6 d-flex justify-content-center">
+                                    <div class="skill-box p-4" style="width: 300px; height: 100px; border: 2px solid #ccc; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fab fa-aws" style="font-size: 2rem; color: #FF9900;"></i>
+                                        <p class="text-center ms-3 mb-0">AWS Architect Associate</p>
+                                    </div>
+                                </div>
+                    
+                                <!-- CISSP Icon -->
+                                <div class="col-md-6 d-flex justify-content-center">
+                                    <div class="skill-box p-4" style="width: 300px; height: 100px; border: 2px solid #ccc; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-shield-alt" style="font-size: 2rem; color: #007bff;"></i>
+                                        <p class="text-center ms-3 mb-0">CISSP</p>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
+                    
+
+                    <section id="contact" class="section-full-height bg-off-white p-4">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                            <div class="card p-4 d-flex justify-content-center align-items-center" style="background-color: white; width: 500px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+                                <h2 class="text-center mb-4">Mes information</h2>
+                                <div class="mb-3 text-center">
+                                    <i class="bi bi-person-fill" style="font-size: 2rem; color: #39FF14;"></i>
+                                    <h5>Name: Guigui</h5>
+                                </div>
+                                <div class="mb-3 text-center">
+                                    <i class="bi bi-telephone-fill" style="font-size: 2rem; color: #39FF14;"></i>
+                                    <h5>Phone: +33 6 25 11 77 13</h5>
+                                </div>
+                                <div class="mb-3 text-center">
+                                    <i class="bi bi-envelope-fill" style="font-size: 2rem; color: #39FF14;"></i>
+                                    <h5>Email: guillaume.dorges@ynov.com</h5>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="/ressource/cv.doc" class="btn" download style="background-color: #ff69b4; color: white;">Download CV</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                          
+                </div>
                 
                 <button id="scrollToIntro" class="scroll-btn btn">
-                    <i class="bi bi-arrow-up"></i> <!-- Bootstrap Icon Up -->
+                    <i class="bi bi-arrow-up"></i>
                 </button>
             </div>
         </div>
@@ -90,12 +158,11 @@
                 const targetID = this.getAttribute('href');
                 const targetSection = document.querySelector(targetID);
                 targetSection.scrollIntoView({
-                    behavior: 'smooth' // Smooth scroll effect
+                    behavior: 'smooth'
                 });
             });
         });
 
-        // Scroll to Intro Button
         const scrollToIntroBtn = document.getElementById('scrollToIntro');
         scrollToIntroBtn.addEventListener('click', function() {
             const introSection = document.getElementById('intro');
@@ -104,7 +171,6 @@
             });
         });
 
-        // Typing Effect Script
         const texts = ["Guigui", "Enfer", "Damnation", "Lave"];
         let count = 0;
         let index = 0;
@@ -124,9 +190,9 @@
             if (letter.length === currentText.length) {
                 count++;
                 index = 0;
-                setTimeout(type, 2000); // Delay before typing next word
+                setTimeout(type, 2000);
             } else {
-                setTimeout(type, 100); // Typing speed
+                setTimeout(type, 100);
             }
         })();
     </script>
