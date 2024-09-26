@@ -44,7 +44,11 @@
                 </section>
 
                 <section id="experience" class="section-full-height bg-off-white d-flex align-items-center justify-content-center">
-                    <h1>Expérience</h1>
+                    <h1>Expérience</h1>{{range .Projets}}
+                    <p>{{.Nom_Projet}} de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}} <br />
+                        {{.Description}}
+                        </p>
+                    {{end}}
                 </section>
                 <section id="formation" class="section-full-height bg-light-white d-flex align-items-center justify-content-center">
                     <h1>Formation</h1>
