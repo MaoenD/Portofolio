@@ -125,15 +125,10 @@
         </div>  
         <div class="form-section">
             <h3>4. MAJ ID</h3>
-            <form action="/admin">
-                <input type="hidden">
+            <form action="/admin" method="POST">
                 <div class="form-group">
                     <label for="updatePfId">ID :</label>
                     <input type="text" id="updatePfId" placeholder={{.SelectedProject.Id_Projet}} name="id" class="form-control" required>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-custom" methode = "GET">Charger</button>
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="updatePfName">Nom :</label>
                     <input type="text" id="updatePfName" placeholder={{.SelectedProject.Nom_Projet}} name="updatePfName" class="form-control">
@@ -155,7 +150,7 @@
                     <input type="text" id="updateDuration"  placeholder={{.SelectedProject.Durée}} name="updateDuration"  class="form-control">
                 </div>
                 <div class="button-group">
-                    <button type="submit" class="btn btn-primary" methode = "GET">MAJ</button>
+                    <button type="submit" class="btn btn-primary" methode = "POST">MAJ</button>
                 </div>
             </form>
         </div>
