@@ -97,7 +97,7 @@
 
         <div class="form-section">
             <h3>3. Post</h3>
-            <form action="/admin1/pf" method="POST">
+            <form action="/admin" method="POST">
                 <div class="form-group">
                     <label for="pfName">Nom :</label>
                     <input type="text" id="pfName" name="Nom_Projet" class="form-control" required>
@@ -130,30 +130,30 @@
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="updatePfId">ID :</label>
-                    <input type="text" id="updatePfId" name="id" class="form-control" required>
+                    <input type="text" id="updatePfId" placeholder={{.SelectedProject.Id_Projet}} name="id" class="form-control" required>
                     <div class="button-group">
-                        <button type="button" class="btn btn-custom" onclick="checkId()">Charger</button>
+                        <button type="button" class="btn btn-custom">Charger</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="updatePfName">Nom :</label>
-                    <input type="text" id="updatePfName" name="Nom_Projet" class="form-control">
+                    <input type="text" id="updatePfName" placeholder={{.SelectedProject.Nom_Projet}} name="Nom_Projet" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="updatePfDescription">Description :</label>
-                    <input type="text" id="updatePfDescription" name="Description" class="form-control">
+                    <input type="text" id="updatePfDescription" placeholder={{.SelectedProject.Description}} name="Description" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="updateStartDate">Début :</label>
-                    <input type="text" id="updateStartDate" name="Date_Debut" class="form-control" placeholder="MM/AAAA" pattern="(0[1-9]|1[0-2])/20\d{2}">
+                    <input type="text" id="updateStartDate" name="Date_Debut" class="form-control" placeholder={{.SelectedProject.Date_Debut}} pattern="(0[1-9]|1[0-2])/20\d{2}">
                 </div>
                 <div class="form-group">
                     <label for="updateEndDate">Fin :</label>
-                    <input type="text" id="updateEndDate" name="Date_Fin" class="form-control" placeholder="MM/AAAA" pattern="(0[1-9]|1[0-2])/20\d{2}">
+                    <input type="text" id="updateEndDate" name="Date_Fin" class="form-control" placeholder={{.SelectedProject.Date_Fin}} pattern="(0[1-9]|1[0-2])/20\d{2}">
                 </div>
                 <div class="form-group">
                     <label for="updateDuration">Durée :</label>
-                    <input type="text" id="updateDuration" name="Durée" class="form-control">
+                    <input type="text" id="updateDuration"  placeholder={{.SelectedProject.Durée}} name="Durée"  class="form-control">
                 </div>
                 <div class="button-group">
                     <button type="submit" class="btn btn-primary">MAJ</button>
@@ -161,32 +161,5 @@
             </form>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const dataOutput = document.getElementById('dataOutput');
-
-            const fetchData = () => {
-                fetch('/admin1/pf')
-                    .then(response => response.json())
-                    .then(data => {
-                        dataOutput.innerHTML = '';
-                        data.forEach(item => {
-                            const dataItem = document.createElement('div');
-                            dataItem.className = 'data-item';
-                            dataItem.textContent = `ID: ${item.id}, Nom: ${item.Nom_Projet}, Description: ${item.Description}, Début: ${item.Date_Debut}, Fin: ${item.Date_Fin}, Durée: ${item.Durée}`;
-                            dataOutput.appendChild(dataItem);
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Erreur lors de la récupération des données :', error);
-                        dataOutput.textContent = 'Erreur lors de la récupération des données.';
-                    });
-            };
-
-            fetchData();
-        });
-    </script>
-
 </body>
 </html>

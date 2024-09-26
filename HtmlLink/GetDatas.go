@@ -30,6 +30,22 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		templates.RenderTemplate(w, "admin", data)
 		return
 	}
+	if r.Method == http.MethodPost {
+		nom := r.FormValue("Nom_Projet")
+		description := r.FormValue("Description")
+		DateDebut := r.FormValue("Date_Debut")
+		DateFin := r.FormValue("Date_Fin")
+		Span := r.FormValue("Durée")
+		PostData(nom, description, DateDebut, DateFin, Span)
+	}
+}
+
+func PostData(nom string, description string, DateStart string, DateFin string, Span string) {
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	GestionBDD.PostProjet(db, nom, description, DateStart, DateFin, Span)
 }
 
 func HandleIndexPage(w http.ResponseWriter, r *http.Request) {
