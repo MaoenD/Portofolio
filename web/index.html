@@ -38,27 +38,41 @@
 
             <!-- Right Column: Content Sections -->
             <div class="col-md-9 right-column scrollable-content">
+                <div class="row">
+                
                 <section id="intro" class="section-full-height bg-image d-flex align-items-center justify-content-center">
                     <!-- Typing Text Effect in the Right Column Intro Section -->
                     <h1 class="display-1 typewriter-text"></h1>
                 </section>
-
+                
+                </div>
+                
                 <section id="experience" class="section-full-height bg-off-white d-flex align-items-center justify-content-center">
-                    <h1>Expérience</h1>{{range .Projets}}
-                    <p>{{.Nom_Projet}} de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}} <br />
+                    <h1>Expérience</h1>
+                      <ul>
+                      {{range .Projets}}
+                      <li>
+                      <p><h2>{{.Nom_Projet}} </h2>de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}} <br />
                         {{.Description}}
-                        </p>
-                    {{end}}
+                      </p>
+                      </li>
+      
+                       {{end}}
+                      </ul>
                 </section>
+
                 <section id="formation" class="section-full-height bg-light-white d-flex align-items-center justify-content-center">
                     <h1>Formation</h1>
                 </section>
+                
                 <section id="skills" class="section-full-height bg-whiter-white d-flex align-items-center justify-content-center">
                     <h1>Techniques Maitrisées</h1>
                 </section>
+                
                 <section id="contact" class="section-full-height bg-almost-white d-flex align-items-center justify-content-center">
                     <h1>Contact</h1>
                 </section>
+                
                 <button id="scrollToIntro" class="scroll-btn btn">
                     <i class="bi bi-arrow-up"></i> <!-- Bootstrap Icon Up -->
                 </button>

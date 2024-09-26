@@ -229,6 +229,10 @@ h1.display-1 {
     font-size: 2.5rem;
   }
 
+  h2.display-1 {
+    font-size: 1,5rem;
+  }
+
   /* Adjust scroll button size */
   .scroll-btn {
     width: 40px;
