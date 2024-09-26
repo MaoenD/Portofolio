@@ -10,6 +10,8 @@ import (
 	"strconv"
 )
 
+var TempId string
+
 func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HandleAdminPage")
 	if r.Method == http.MethodGet {
@@ -31,22 +33,28 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == http.MethodPost {
+		fmt.Println("Post method")
 		nom := r.FormValue("Nom_Projet")
 		description := r.FormValue("Description")
 		DateDebut := r.FormValue("Date_Debut")
 		DateFin := r.FormValue("Date_Fin")
 		Span := r.FormValue("Durée")
+		fmt.Println("caca")
 		PostData(nom, description, DateDebut, DateFin, Span)
-	}
-	if r.Method == http.MethodPut {
+		fmt.Println("caca2")
 		log.Print("test")
 		id := r.FormValue("id")
-		nom := r.FormValue("updatePfName")
-		description := r.FormValue("updatePfDescription")
-		DateDebut := r.FormValue("updateStartDate")
-		DateFin := r.FormValue("updateEndDate")
-		Span := r.FormValue("updateDuration")
-		UpdateData(id, nom, description, DateDebut, DateFin, Span)
+		if id != "" {
+			TempId = id
+		}
+		nomUpdate := r.FormValue("updatePfName")
+		descriptionUpdate := r.FormValue("updatePfDescription")
+		DateDebutUpdate := r.FormValue("updateStartDate")
+		DateFinUpdate := r.FormValue("updateEndDate")
+		SpanUpdate := r.FormValue("updateDuration")
+		fmt.Println(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate, "caca4")
+		UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		fmt.Println("caca3")
 	}
 }
 
