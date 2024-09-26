@@ -5,6 +5,7 @@ import (
 	"Portefolio/HtmlLink"
 	"Portefolio/database"
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -21,6 +22,7 @@ func Start() {
 
 	http.Handle("/Style/", http.StripPrefix("/Style/", http.FileServer(http.Dir("Style"))))
 	http.Handle("/ressource/", http.StripPrefix("/ressource/", http.FileServer(http.Dir("ressource"))))
+	fmt.Println("caca")
 
 	GestionBDD.PostProjet(db, "El Project", "Un magnifique projet", "08/2024", "09/2024", "1mois")
 
