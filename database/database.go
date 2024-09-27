@@ -43,9 +43,18 @@ func CreateTable() {
         Description TEXT,
         Date_Debut TEXT,
         Date_Fin TEXT,
-       Duree TEXT
+    	Duree TEXT
     );
-	`
+		
+	CREATE TABLE IF NOT EXISTS Formations (
+        id_Formation INTEGER PRIMARY KEY AUTOINCREMENT,
+        Nom_Formation TEXT NOT NULL,
+        description TEXT,
+        Date_Debut TEXT,
+        Date_Fin TEXT,
+        Duree TEXT
+    );
+`
 
 	_, err := DB.Exec(query)
 	if err != nil {

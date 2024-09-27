@@ -1,4 +1,4 @@
 *.log
 *.tmp
 
-database/database.db
+database.db

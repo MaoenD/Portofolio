@@ -29,7 +29,7 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 				log.Println("Invalid ID:", err)
 			}
 		}
-		templates.RenderTemplate(w, "admin", data)
+		templates.RenderTemplate(w, "adminXP", data)
 		return
 	}
 	if r.Method == http.MethodPost {
@@ -77,17 +77,6 @@ func UpdateData(id string, nom string, description string, DateStart string, Dat
 	GestionBDD.UpdateDescriptionById(db, idInt, description)
 	GestionBDD.UpdateProjetNameById(db, idInt, nom)
 	GestionBDD.UpdateSpanById(db, idInt, span)
-}
-
-func HandleIndexPage(w http.ResponseWriter, r *http.Request) {
-	datas := GetDatas()
-	data := map[string]interface{}{
-		"Projets": datas,
-	}
-	if r.Method == http.MethodGet {
-	}
-	templates.RenderTemplate(w, "index", data)
-	return
 }
 
 func GetDatas() []GestionBDD.Projet {

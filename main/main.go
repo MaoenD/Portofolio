@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// http://localhost:8080/admin
+// http://localhost:8080/adminXP
 
 func main() {
 	log.Println("Starting server...")

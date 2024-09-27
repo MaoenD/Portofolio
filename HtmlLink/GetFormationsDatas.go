@@ -1,7 +1,9 @@
 package HtmlLink
 
 import (
+	"Portefolio/GestionBDD"
 	"Portefolio/templates"
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,7 +13,7 @@ import (
 func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HandleAdminPage")
 	if r.Method == http.MethodGet {
-		datas := GetDatas()
+		datas := GetFormationsDatas()
 		data := map[string]interface{}{
 			"Projets": datas,
 		}
@@ -19,13 +21,13 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		if idToGet != "" {
 			id, err := strconv.Atoi(idToGet)
 			if err == nil {
-				dataByIdTemp := GetDatasById(id)
+				dataByIdTemp := GetFormationsDatasById(id)
 				data["SelectedProject"] = dataByIdTemp
 			} else {
 				log.Println("Invalid ID:", err)
 			}
 		}
-		templates.RenderTemplate(w, "admin", data)
+		templates.RenderTemplate(w, "adminFormations", data)
 		return
 	}
 	if r.Method == http.MethodPost {
@@ -52,4 +54,49 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
 		fmt.Println("caca3")
 	}
+}
+
+func PostFormationsData(nom string, description string, DateStart string, DateFin string, Span string) {
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	GestionBDD.PostProjet(db, nom, description, DateStart, DateFin, Span)
+}
+
+func GetFormationsDatas() []GestionBDD.Projet {
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	datas, err := GestionBDD.GetAllProjet(db)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return datas
+}
+
+func GetFormationsDatasById(id int) GestionBDD.Projet {
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	datas, err := GestionBDD.GetProjetById(db, id)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return datas
+}
+
+func UpdateFormationsData(id string, nom string, description string, DateStart string, DateFin string, span string) {
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	idInt, _ := strconv.Atoi(id)
+	GestionBDD.UpdateDateDebutById(db, idInt, DateStart)
+	GestionBDD.UpdateDateFinById(db, idInt, DateFin)
+	GestionBDD.UpdateDescriptionById(db, idInt, description)
+	GestionBDD.UpdateProjetNameById(db, idInt, nom)
+	GestionBDD.UpdateSpanById(db, idInt, span)
 }

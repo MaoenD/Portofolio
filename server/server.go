@@ -16,7 +16,8 @@ func Start() {
 	http.Handle("/Style/", http.StripPrefix("/Style/", http.FileServer(http.Dir("Style"))))
 	http.Handle("/ressource/", http.StripPrefix("/ressource/", http.FileServer(http.Dir("ressource"))))
 
-	http.HandleFunc("/admin", HtmlLink.HandleAdminPage)
+	http.HandleFunc("/adminXP", HtmlLink.HandleAdminPage)
+	http.HandleFunc("/adminFormations", HtmlLink.HandleFormationPage)
 	http.HandleFunc("/index", HtmlLink.HandleIndexPage)
 
 	log.Println("Listening on :8080...")
