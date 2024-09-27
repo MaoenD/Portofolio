@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .data-section {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        .data-item {
+            display: flex;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: blue;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Admin</h1>
+
+        <div class="form-section">
+            <h3>1. Get all</h3>
+            {{range .Projets}}
+                <p>{{.Id_Projet}} {{.Nom_Projet}}</p>
+            {{end}}
+           </div>
+
+        <div class="data-section">
+            <div id="dataOutput"></div>
+        </div>
+
+        <div class="form-section">
+            <h3>2. Get by ID</h3>
+            <form action="/admin" method="GET">
+                <div class="form-group">
+                    <label for="getPfId">ID du projet :</label>
+                    <input type="text" id="getPfId" name="id" class="form-control" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Get</button>
+                </div>
+            </form>
+
+            {{if .SelectedProject}}
+            <div>
+                <h4>Selected Project:</h4>
+                <p>ID: {{.SelectedProject.Id_Projet}}</p>
+                <p>Name: {{.SelectedProject.Nom_Projet}}</p>
+                <p>Description: {{.SelectedProject.Description}}</p>
+                <p>Start: {{.SelectedProject.Date_Debut}}</p>
+                <p>End: {{.SelectedProject.Date_Fin}}</p>
+                <p>Duration: {{.SelectedProject.Durée}}</p>
+            </div>
+            {{end}}
+        </div>
+
+        <div class="form-section">
+            <h3>3. Post</h3>
+            <form action="/admin" method="POST">
+                <div class="form-group">
+                    <label for="pfName">Nom :</label>
+                    <input type="text" id="pfName" name="Nom_Projet" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="pfDescription">Description :</label>
+                    <input type="text" id="pfDescription" name="Description" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">Début (MM/AAAA) :</label>
+                    <input type="text" id="startDate" name="Date_Debut" class="form-control" placeholder="MM/AAAA" pattern="(0[1-9]|1[0-2])/20\d{2}" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">Fin (MM/AAAA) :</label>
+                    <input type="text" id="endDate" name="Date_Fin" class="form-control" placeholder="MM/AAAA" pattern="(0[1-9]|1[0-2])/20\d{2}" required>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Durée :</label>
+                    <input type="text" id="duration" name="Durée" class="form-control" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>  
+        <div class="form-section">
+            <h3>4. MAJ ID</h3>
+            <form action="/admin">
+                <input type="hidden">
+                <div class="form-group">
+                    <label for="updatePfId">ID :</label>
+                    <input type="text" id="updatePfId" placeholder={{.SelectedProject.Id_Projet}} name="id" class="form-control" required>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-custom" methode = "GET">Charger</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="updatePfName">Nom :</label>
+                    <input type="text" id="updatePfName" placeholder={{.SelectedProject.Nom_Projet}} name="updatePfName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="updatePfDescription">Description :</label>
+                    <input type="text" id="updatePfDescription" placeholder={{.SelectedProject.Description}} name="updatePfDescription" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="updateStartDate">Début :</label>
+                    <input type="text" id="updateStartDate" name="updateStartDate" class="form-control" placeholder={{.SelectedProject.Date_Debut}} pattern="(0[1-9]|1[0-2])/20\d{2}">
+                </div>
+                <div class="form-group">
+                    <label for="updateEndDate">Fin :</label>
+                    <input type="text" id="updateEndDate" name="updateEndDate" class="form-control" placeholder={{.SelectedProject.Date_Fin}} pattern="(0[1-9]|1[0-2])/20\d{2}">
+                </div>
+                <div class="form-group">
+                    <label for="updateDuration">Durée :</label>
+                    <input type="text" id="updateDuration"  placeholder={{.SelectedProject.Durée}} name="updateDuration"  class="form-control">
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" methode = "GET">MAJ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
