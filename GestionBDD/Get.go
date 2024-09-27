@@ -76,3 +76,75 @@ func GetProjectSpanById(db *sql.DB, id int) (string, error) {
 	}
 	return projetSpan, nil
 }
+
+func GetAllFormations(db *sql.DB) ([]Formation, error) {
+	rows, err := db.Query("SELECT * FROM Formations")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var Formations []Formation
+	for rows.Next() {
+		var Formation Formation
+		if err := rows.Scan(&Formation.Id_Formation, &Formation.Nom_Formation, &Formation.Description, &Formation.Date_Debut, &Formation.Date_Fin, &Formation.Durée); err != nil {
+			return nil, err
+		}
+		Formations = append(Formations, Formation)
+	}
+
+	return Formations, nil
+}
+
+func GetFormationsById(db *sql.DB, id int) (Formation, error) {
+	var formation Formation
+	err := db.QueryRow("SELECT * FROM Formations WHERE Id_Formation = ?", id).Scan(&formation.Id_Formation, &formation.Nom_Formation, &formation.Description, &formation.Date_Debut, &formation.Date_Fin, &formation.Durée)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formation, nil
+}
+
+func GetFormationsNameById(db *sql.DB, id int) (string, error) {
+	var formationName string
+	err := db.QueryRow("SELECT Nom_Formation FROM Formations WHERE Id_Formation = ?", id).Scan(&formationName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formationName, nil
+}
+
+func GetFormationsDescriptionById(db *sql.DB, id int) (string, error) {
+	var formationDescription string
+	err := db.QueryRow("SELECT Description FROM Formations WHERE Id_Formation = ?", id).Scan(&formationDescription)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formationDescription, nil
+}
+
+func GetFormationsStartDateById(db *sql.DB, id int) (string, error) {
+	var formationStartDate string
+	err := db.QueryRow("SELECT Date_Debut FROM Formations WHERE Id_Formation = ?", id).Scan(&formationStartDate)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formationStartDate, nil
+}
+
+func GetFormationsEndDateById(db *sql.DB, id int) (string, error) {
+	var formationEndDate string
+	err := db.QueryRow("SELECT Date_Fin FROM Formations WHERE Id_Formation = ?", id).Scan(&formationEndDate)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formationEndDate, nil
+}
+
+func GetFormationsSpanById(db *sql.DB, id int) (string, error) {
+	var formationSpan string
+	err := db.QueryRow("SELECT Duree FROM Formations WHERE Id_Formation = ?", id).Scan(&formationSpan)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return formationSpan, nil
+}

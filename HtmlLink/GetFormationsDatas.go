@@ -15,14 +15,14 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		datas := GetFormationsDatas()
 		data := map[string]interface{}{
-			"Projets": datas,
+			"Formations": datas,
 		}
 		idToGet := r.FormValue("id")
 		if idToGet != "" {
 			id, err := strconv.Atoi(idToGet)
 			if err == nil {
 				dataByIdTemp := GetFormationsDatasById(id)
-				data["SelectedProject"] = dataByIdTemp
+				data["SelectedFormation"] = dataByIdTemp
 			} else {
 				log.Println("Invalid ID:", err)
 			}
@@ -38,7 +38,9 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		DateFin := r.FormValue("Date_Fin")
 		Span := r.FormValue("Durée")
 		fmt.Println("caca")
-		PostData(nom, description, DateDebut, DateFin, Span)
+		if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
+			PostFormationsData(nom, description, DateDebut, DateFin, Span)
+		}
 		fmt.Println("caca2")
 		log.Print("test")
 		id := r.FormValue("id")
@@ -50,8 +52,9 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		DateDebutUpdate := r.FormValue("updateStartDate")
 		DateFinUpdate := r.FormValue("updateEndDate")
 		SpanUpdate := r.FormValue("updateDuration")
-		fmt.Println(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate, "caca4")
-		UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
+			UpdateFormationsData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		}
 		fmt.Println("caca3")
 	}
 }
@@ -61,27 +64,27 @@ func PostFormationsData(nom string, description string, DateStart string, DateFi
 	if err != nil {
 		log.Fatal(err)
 	}
-	GestionBDD.PostProjet(db, nom, description, DateStart, DateFin, Span)
+	GestionBDD.PostFormations(db, nom, description, DateStart, DateFin, Span)
 }
 
-func GetFormationsDatas() []GestionBDD.Projet {
+func GetFormationsDatas() []GestionBDD.Formation {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
 		log.Fatal(err)
 	}
-	datas, err := GestionBDD.GetAllProjet(db)
+	datas, err := GestionBDD.GetAllFormations(db)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return datas
 }
 
-func GetFormationsDatasById(id int) GestionBDD.Projet {
+func GetFormationsDatasById(id int) GestionBDD.Formation {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
 		log.Fatal(err)
 	}
-	datas, err := GestionBDD.GetProjetById(db, id)
+	datas, err := GestionBDD.GetFormationsById(db, id)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -94,9 +97,9 @@ func UpdateFormationsData(id string, nom string, description string, DateStart s
 		log.Fatal(err)
 	}
 	idInt, _ := strconv.Atoi(id)
-	GestionBDD.UpdateDateDebutById(db, idInt, DateStart)
-	GestionBDD.UpdateDateFinById(db, idInt, DateFin)
-	GestionBDD.UpdateDescriptionById(db, idInt, description)
-	GestionBDD.UpdateProjetNameById(db, idInt, nom)
-	GestionBDD.UpdateSpanById(db, idInt, span)
+	GestionBDD.UpdateFormationDateDebutById(db, idInt, DateStart)
+	GestionBDD.UpdateFormationDateFinById(db, idInt, DateFin)
+	GestionBDD.UpdateFormationDescriptionById(db, idInt, description)
+	GestionBDD.UpdateFormationNameById(db, idInt, nom)
+	GestionBDD.UpdateFormationSpanById(db, idInt, span)
 }
