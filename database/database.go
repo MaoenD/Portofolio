@@ -24,11 +24,11 @@ func ConnectDB(databaseURL string) {
 	var err error
 	DB, err = sql.Open("sqlite3", databaseURL)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	if err = DB.Ping(); err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	log.Println("Database connected!")
@@ -58,7 +58,7 @@ func CreateTable() {
 
 	_, err := DB.Exec(query)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	log.Println("Table created!")

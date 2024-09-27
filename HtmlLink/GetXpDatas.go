@@ -33,16 +33,12 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == http.MethodPost {
-		fmt.Println("Post method")
 		nom := r.FormValue("Nom_Projet")
 		description := r.FormValue("Description")
 		DateDebut := r.FormValue("Date_Debut")
 		DateFin := r.FormValue("Date_Fin")
 		Span := r.FormValue("Durée")
-		fmt.Println("caca")
 		PostData(nom, description, DateDebut, DateFin, Span)
-		fmt.Println("caca2")
-		log.Print("test")
 		id := r.FormValue("id")
 		if id != "" {
 			TempId = id
@@ -52,16 +48,14 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		DateDebutUpdate := r.FormValue("updateStartDate")
 		DateFinUpdate := r.FormValue("updateEndDate")
 		SpanUpdate := r.FormValue("updateDuration")
-		fmt.Println(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate, "caca4")
 		UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
-		fmt.Println("caca3")
 	}
 }
 
 func PostData(nom string, description string, DateStart string, DateFin string, Span string) {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	GestionBDD.PostProjet(db, nom, description, DateStart, DateFin, Span)
 }
@@ -69,7 +63,7 @@ func PostData(nom string, description string, DateStart string, DateFin string, 
 func UpdateData(id string, nom string, description string, DateStart string, DateFin string, span string) {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	idInt, _ := strconv.Atoi(id)
 	GestionBDD.UpdateDateDebutById(db, idInt, DateStart)
@@ -82,11 +76,11 @@ func UpdateData(id string, nom string, description string, DateStart string, Dat
 func GetDatas() []GestionBDD.Projet {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	datas, err := GestionBDD.GetAllProjet(db)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	return datas
 }
@@ -94,11 +88,11 @@ func GetDatas() []GestionBDD.Projet {
 func GetDatasById(id int) GestionBDD.Projet {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	datas, err := GestionBDD.GetProjetById(db, id)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	return datas
 }
