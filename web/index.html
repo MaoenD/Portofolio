@@ -69,7 +69,20 @@
                     </section>
                     
                     <section id="formation" class="section-full-height bg-off-white p-4"> 
-                        <h1 class="experience-title">Formation</h1>
+                        div class="experience-content">
+                            <h1 class="experience-title">Formation</h1>
+                            <div class="projects">
+                                {{range .Projets}}
+                                <div>
+                                    <h3 class="project-title">{{.Nom_Projet}}</h3>
+                                    <p>de {{.Date_Debut}} à {{.Date_Fin}} sur {{.Durée}}</p>
+                                    <p>{{.Description}}</p>
+                                </div>
+                                <br/>
+                                {{end}}
+                            </div>
+                        </div>
+                    </section>
                     </section>
 
                     <section id="skills" class="section-full-height bg-off-white p-4">
@@ -119,7 +132,7 @@
                     <section id="contact" class="section-full-height bg-off-white p-4">
                         <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
                             <div class="card p-4 d-flex justify-content-center align-items-center" style="background-color: white; width: 500px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-                                <h2 class="text-center mb-4">Mes information</h2>
+                                <h2 class="text-center mb-4">My contact info</h2>
                                 <div class="mb-3 text-center">
                                     <i class="bi bi-person-fill" style="font-size: 2rem; color: #39FF14;"></i>
                                     <h5>Name: Guigui</h5>
