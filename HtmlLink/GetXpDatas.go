@@ -38,7 +38,9 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		DateDebut := r.FormValue("Date_Debut")
 		DateFin := r.FormValue("Date_Fin")
 		Span := r.FormValue("Durée")
-		PostData(nom, description, DateDebut, DateFin, Span)
+		if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
+			PostData(nom, description, DateDebut, DateFin, Span)
+		}
 		id := r.FormValue("id")
 		if id != "" {
 			TempId = id
@@ -48,7 +50,9 @@ func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
 		DateDebutUpdate := r.FormValue("updateStartDate")
 		DateFinUpdate := r.FormValue("updateEndDate")
 		SpanUpdate := r.FormValue("updateDuration")
-		UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
+			UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		}
 	}
 }
 
