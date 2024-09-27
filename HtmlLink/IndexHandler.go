@@ -7,8 +7,10 @@ import (
 
 func HandleIndexPage(w http.ResponseWriter, r *http.Request) {
 	datas := GetDatas()
+	FDatas := GetFormationsDatas()
 	data := map[string]interface{}{
-		"Projets": datas,
+		"Projets":   datas,
+		"Formation": FDatas,
 	}
 	if r.Method == http.MethodGet {
 	}

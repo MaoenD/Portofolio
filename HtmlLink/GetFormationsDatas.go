@@ -31,17 +31,14 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == http.MethodPost {
-		fmt.Println("Post method")
 		nom := r.FormValue("Nom_Projet")
 		description := r.FormValue("Description")
 		DateDebut := r.FormValue("Date_Debut")
 		DateFin := r.FormValue("Date_Fin")
 		Span := r.FormValue("Durée")
-		fmt.Println("caca")
 		if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
 			PostFormationsData(nom, description, DateDebut, DateFin, Span)
 		}
-		fmt.Println("caca2")
 		log.Print("test")
 		id := r.FormValue("id")
 		if id != "" {
@@ -55,14 +52,13 @@ func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 		if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
 			UpdateFormationsData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
 		}
-		fmt.Println("caca3")
 	}
 }
 
 func PostFormationsData(nom string, description string, DateStart string, DateFin string, Span string) {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	GestionBDD.PostFormations(db, nom, description, DateStart, DateFin, Span)
 }
@@ -70,11 +66,11 @@ func PostFormationsData(nom string, description string, DateStart string, DateFi
 func GetFormationsDatas() []GestionBDD.Formation {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	datas, err := GestionBDD.GetAllFormations(db)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	return datas
 }
@@ -82,11 +78,11 @@ func GetFormationsDatas() []GestionBDD.Formation {
 func GetFormationsDatasById(id int) GestionBDD.Formation {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	datas, err := GestionBDD.GetFormationsById(db, id)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	return datas
 }
@@ -94,7 +90,7 @@ func GetFormationsDatasById(id int) GestionBDD.Formation {
 func UpdateFormationsData(id string, nom string, description string, DateStart string, DateFin string, span string) {
 	db, err := sql.Open("sqlite3", "database/database.db")
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 	idInt, _ := strconv.Atoi(id)
 	GestionBDD.UpdateFormationDateDebutById(db, idInt, DateStart)
