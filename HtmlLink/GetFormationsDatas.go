@@ -12,45 +12,47 @@ import (
 
 func HandleFormationPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HandleAdminPage")
-	if r.Method == http.MethodGet {
-		datas := GetFormationsDatas()
-		data := map[string]interface{}{
-			"Formations": datas,
-		}
-		idToGet := r.FormValue("id")
-		if idToGet != "" {
-			id, err := strconv.Atoi(idToGet)
-			if err == nil {
-				dataByIdTemp := GetFormationsDatasById(id)
-				data["SelectedFormation"] = dataByIdTemp
-			} else {
-				log.Println("Invalid ID:", err)
+	if loged {
+		if r.Method == http.MethodGet {
+			datas := GetFormationsDatas()
+			data := map[string]interface{}{
+				"Formations": datas,
 			}
+			idToGet := r.FormValue("id")
+			if idToGet != "" {
+				id, err := strconv.Atoi(idToGet)
+				if err == nil {
+					dataByIdTemp := GetFormationsDatasById(id)
+					data["SelectedFormation"] = dataByIdTemp
+				} else {
+					log.Println("Invalid ID:", err)
+				}
+			}
+			templates.RenderTemplate(w, "adminFormations", data)
+			return
 		}
-		templates.RenderTemplate(w, "adminFormations", data)
-		return
-	}
-	if r.Method == http.MethodPost {
-		nom := r.FormValue("Nom_Projet")
-		description := r.FormValue("Description")
-		DateDebut := r.FormValue("Date_Debut")
-		DateFin := r.FormValue("Date_Fin")
-		Span := r.FormValue("Durée")
-		if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
-			PostFormationsData(nom, description, DateDebut, DateFin, Span)
-		}
-		log.Print("test")
-		id := r.FormValue("id")
-		if id != "" {
-			TempId = id
-		}
-		nomUpdate := r.FormValue("updatePfName")
-		descriptionUpdate := r.FormValue("updatePfDescription")
-		DateDebutUpdate := r.FormValue("updateStartDate")
-		DateFinUpdate := r.FormValue("updateEndDate")
-		SpanUpdate := r.FormValue("updateDuration")
-		if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
-			UpdateFormationsData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		if r.Method == http.MethodPost {
+			nom := r.FormValue("Nom_Projet")
+			description := r.FormValue("Description")
+			DateDebut := r.FormValue("Date_Debut")
+			DateFin := r.FormValue("Date_Fin")
+			Span := r.FormValue("Durée")
+			if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
+				PostFormationsData(nom, description, DateDebut, DateFin, Span)
+			}
+			log.Print("test")
+			id := r.FormValue("id")
+			if id != "" {
+				TempId = id
+			}
+			nomUpdate := r.FormValue("updatePfName")
+			descriptionUpdate := r.FormValue("updatePfDescription")
+			DateDebutUpdate := r.FormValue("updateStartDate")
+			DateFinUpdate := r.FormValue("updateEndDate")
+			SpanUpdate := r.FormValue("updateDuration")
+			if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
+				UpdateFormationsData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+			}
 		}
 	}
 }

@@ -6,6 +6,7 @@ import (
 )
 
 func HandleIndexPage(w http.ResponseWriter, r *http.Request) {
+	loged = false
 	datas := GetDatas()
 	FDatas := GetFormationsDatas()
 	data := map[string]interface{}{

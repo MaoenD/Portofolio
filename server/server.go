@@ -19,6 +19,7 @@ func Start() {
 	http.HandleFunc("/adminXP", HtmlLink.HandleAdminPage)
 	http.HandleFunc("/adminFormations", HtmlLink.HandleFormationPage)
 	http.HandleFunc("/index", HtmlLink.HandleIndexPage)
+	http.HandleFunc("/login", HtmlLink.HandleLoginPage)
 
 	log.Println("Listening on :8080...")
 	// Starting the server on port 8080

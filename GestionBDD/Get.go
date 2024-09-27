@@ -152,3 +152,12 @@ func GetFormationsSpanById(db *sql.DB, id int) (string, error) {
 	}
 	return formationSpan, nil
 }
+
+func Getlogins(db *sql.DB) (string, string, error) {
+	var user, pass string
+	err := db.QueryRow("SELECT username, password FROM Logins").Scan(&user, &pass)
+	if err != nil {
+		log.Println(err)
+	}
+	return user, pass, nil
+}

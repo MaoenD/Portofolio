@@ -11,47 +11,56 @@ import (
 )
 
 var TempId string
+var loged bool = false
 
 func HandleAdminPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("HandleAdminPage")
-	if r.Method == http.MethodGet {
-		datas := GetDatas()
-		data := map[string]interface{}{
-			"Projets": datas,
-		}
-		idToGet := r.FormValue("id")
-		if idToGet != "" {
-			id, err := strconv.Atoi(idToGet)
-			if err == nil {
-				dataByIdTemp := GetDatasById(id)
-				data["SelectedProject"] = dataByIdTemp
-			} else {
-				log.Println("Invalid ID:", err)
-			}
-		}
-		templates.RenderTemplate(w, "adminXP", data)
-		return
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+	user, pass := GetLogins()
+	if username == user && password == pass {
+		loged = true
 	}
-	if r.Method == http.MethodPost {
-		nom := r.FormValue("Nom_Projet")
-		description := r.FormValue("Description")
-		DateDebut := r.FormValue("Date_Debut")
-		DateFin := r.FormValue("Date_Fin")
-		Span := r.FormValue("Durée")
-		if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
-			PostData(nom, description, DateDebut, DateFin, Span)
+	if loged {
+		fmt.Println("HandleAdminPage")
+		if r.Method == http.MethodGet {
+			datas := GetDatas()
+			data := map[string]interface{}{
+				"Projets": datas,
+			}
+			idToGet := r.FormValue("id")
+			if idToGet != "" {
+				id, err := strconv.Atoi(idToGet)
+				if err == nil {
+					dataByIdTemp := GetDatasById(id)
+					data["SelectedProject"] = dataByIdTemp
+				} else {
+					log.Println("Invalid ID:", err)
+				}
+			}
+			templates.RenderTemplate(w, "adminXP", data)
+			return
 		}
-		id := r.FormValue("id")
-		if id != "" {
-			TempId = id
-		}
-		nomUpdate := r.FormValue("updatePfName")
-		descriptionUpdate := r.FormValue("updatePfDescription")
-		DateDebutUpdate := r.FormValue("updateStartDate")
-		DateFinUpdate := r.FormValue("updateEndDate")
-		SpanUpdate := r.FormValue("updateDuration")
-		if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
-			UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+		if r.Method == http.MethodPost {
+			nom := r.FormValue("Nom_Projet")
+			description := r.FormValue("Description")
+			DateDebut := r.FormValue("Date_Debut")
+			DateFin := r.FormValue("Date_Fin")
+			Span := r.FormValue("Durée")
+			if nom != "" && description != "" && DateDebut != "" && DateFin != "" && Span != "" {
+				PostData(nom, description, DateDebut, DateFin, Span)
+			}
+			id := r.FormValue("id")
+			if id != "" {
+				TempId = id
+			}
+			nomUpdate := r.FormValue("updatePfName")
+			descriptionUpdate := r.FormValue("updatePfDescription")
+			DateDebutUpdate := r.FormValue("updateStartDate")
+			DateFinUpdate := r.FormValue("updateEndDate")
+			SpanUpdate := r.FormValue("updateDuration")
+			if nomUpdate != "" && descriptionUpdate != "" && DateDebutUpdate != "" && DateFinUpdate != "" && SpanUpdate != "" {
+				UpdateData(TempId, nomUpdate, descriptionUpdate, DateDebutUpdate, DateFinUpdate, SpanUpdate)
+			}
 		}
 	}
 }
@@ -99,4 +108,18 @@ func GetDatasById(id int) GestionBDD.Projet {
 		log.Println(err)
 	}
 	return datas
+}
+
+func GetLogins() (user string, pass string) {
+	var username, password string
+	db, err := sql.Open("sqlite3", "database/database.db")
+	if err != nil {
+		log.Println(err)
+	}
+	defer db.Close()
+	username, password, err = GestionBDD.Getlogins(db)
+	if err != nil {
+		log.Println(err)
+	}
+	return username, password
 }

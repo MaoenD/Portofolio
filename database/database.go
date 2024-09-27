@@ -54,6 +54,12 @@ func CreateTable() {
         Date_Fin TEXT,
         Duree TEXT
     );
+
+	CREATE TABLE IF NOT EXISTS Logins (
+	    id INTEGER PRIMARY KEY,
+	    username TEXT,
+	    password TEXT
+	);
 `
 
 	_, err := DB.Exec(query)
