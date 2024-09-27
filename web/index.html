@@ -177,13 +177,19 @@
         });
 
         const scrollToIntroBtn = document.getElementById('scrollToIntro');
+
+        // Single click to scroll to intro
         scrollToIntroBtn.addEventListener('click', function() {
             const introSection = document.getElementById('intro');
             introSection.scrollIntoView({
                 behavior: 'smooth'
             });
         });
-
+    
+        // Double click to redirect
+        scrollToIntroBtn.addEventListener('dblclick', function() {
+            window.location.href = 'http://localhost:8080/adminFormations';
+        });
         const texts = ["Guigui", "Enfer", "Damnation", "Lave"];
         let count = 0;
         let index = 0;
