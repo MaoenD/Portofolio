@@ -5,9 +5,9 @@ import (
 	"log"
 )
 
-// http://localhost:8080/adminXP
-// http://localhost:8080/adminFormations
 // http://localhost:8080/index
+// login: Guillaume pwd: 1234
+// double clic arrow to admin
 
 func main() {
 	log.Println("Starting server...")

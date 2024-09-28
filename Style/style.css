@@ -2,9 +2,7 @@
 /*//////////////////////// General Styles //////////////////////////*/
 /*//////////////////////////////////////////////////////////////////*/
 
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Fredoka:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Old+Uyghur&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+/* Reset CSS */
 body, html {
   margin: 0;
   padding: 0;
@@ -44,6 +42,7 @@ body, html {
   margin-bottom: 20px;
 }
 
+/* Profile Title */
 .profile-title {
   font-size: 24px;
   font-weight: bold;
@@ -60,6 +59,7 @@ body, html {
   margin-bottom: 20px;
 }
 
+/* Social Media Icon Styling */
 .social-icons a {
   font-size: 24px;
   width: 50px;
@@ -73,6 +73,7 @@ body, html {
   text-align: center;
 }
 
+/* Hover state: change background color and border color */
 .social-icons a:hover {
   background-color: #00b7ff;
   border-color: #007bff;
@@ -90,11 +91,13 @@ body, html {
   text-decoration: none; /* Removes the default underline */
 }
 
+/* Navigation Links Icons */
 .nav-link i {
   margin-right: 10px;
   font-size: 20px;
 }
 
+/* Hover state: change color to black */
 .nav-link:hover {
   color: #000000;
 }
@@ -190,11 +193,13 @@ h1.display-1 {
   }
 }
 
+/* Section Content */
 .section-content {
   position: relative;
   height: 100%;
 }
 
+/* Section Title */
 .experience-title {
   position: relative;
   top: 0px;
@@ -207,7 +212,7 @@ h1.display-1 {
   color: tomato;
 }
 
-/* marche */
+/* Section Subtitle */
 .projects {
   text-align: left;
   margin-top: -20px;
@@ -215,27 +220,27 @@ h1.display-1 {
   margin-left: 0;
 }
 
-
-/* marche */
+/* Project Card Styles */
 .project-title {
   font-size: 1rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 10px;
   text-align: left;
-  font-family: 'Noto Serif Old Uyghur', serif; /* marche pas */
 }
 
+/* Project Card Image */
 .card {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
+/* Project Card Image */
 #contact {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* Skill box styling */
+/* Contact Form */
 .skill-box {
   background-color: #f9f9f9;
   border-radius: 15px;
@@ -248,82 +253,35 @@ h1.display-1 {
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
+/* Hover effect */
 .skill-box:hover {
   transform: scale(1.05);
-  border-color: #39FF14;
+
 }
 
+/* Contact Form */
 .row.g-2 > .col-md-6 {
   margin-bottom: 10px;
 }
 
+/* Contact Form */
 .skill-box img, .skill-box i {
   width: 50px;
   height: auto;
 }
 
+/* Contact Form */
 .skill-box p {
   margin-left: 15px;
   margin-bottom: 0;
   text-align: center;
 }
 
+/* Contact Form */
 #skills {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-}
-
-/*//////////////////////////////////////////////////////////////////*/
-/*//////////////////////// Admin Page Styles ///////////////////////*/
-/*//////////////////////////////////////////////////////////////////*/
-
-.admin-container {
-  margin-top: 50px;
-}
-
-.admin-form-section {
-  margin-bottom: 30px;
-}
-
-.admin-data-section {
-  margin-top: 20px;
-  max-height: 200px;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-.admin-data-item {
-  display: flex; 
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  white-space: nowrap;
-}
-
-/* Updated Button Alignment and Spacing */
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-.form-section, .data-section {
-  margin-bottom: 100px; /* Increased space between sections */
-}
-
-/* Smaller Input Fields */
-.form-control {
-  width: 50%; /* Reduced size of input fields */
-  display: inline-block;
-}
-
-.btn {
-  padding: 10px 15px; 
-  border: none; 
-  border-radius: 5px;
-  cursor: pointer;
 }

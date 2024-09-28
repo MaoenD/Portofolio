@@ -7,8 +7,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../Style/style.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     
         <!-- Add Font Awesome for AWS, CISSP -->
@@ -125,9 +123,6 @@
                             </div>
                         </div>
                     </section>
-                    
-                    
-                    
 
                     <section id="contact" class="section-full-height bg-off-white p-4">
                         <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
@@ -165,55 +160,55 @@
 
     <!-- Smooth Scrolling Script -->
     <script>
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetID = this.getAttribute('href');
-                const targetSection = document.querySelector(targetID);
-                targetSection.scrollIntoView({
+        document.querySelectorAll('.nav-link').forEach(link => { // For each link in the nav
+            link.addEventListener('click', function(e) { // Add an event listener on click
+                e.preventDefault(); // Prevent the default behavior of the link
+                const targetID = this.getAttribute('href'); // Get the href attribute of the link
+                const targetSection = document.querySelector(targetID); // Get the section with the ID of the href attribute
+                targetSection.scrollIntoView({ // Scroll to the section
                     behavior: 'smooth'
                 });
             });
         });
 
-        const scrollToIntroBtn = document.getElementById('scrollToIntro');
+        const scrollToIntroBtn = document.getElementById('scrollToIntro'); // Get the scroll to intro button
 
         // Single click to scroll to intro
-        scrollToIntroBtn.addEventListener('click', function() {
-            const introSection = document.getElementById('intro');
-            introSection.scrollIntoView({
-                behavior: 'smooth'
+        scrollToIntroBtn.addEventListener('click', function() { // Add an event listener on click
+            const introSection = document.getElementById('intro'); // Get the intro section
+            introSection.scrollIntoView({ // Scroll to the intro section
+                behavior: 'smooth' 
             });
         });
     
         // Double click to redirect
-        scrollToIntroBtn.addEventListener('dblclick', function() {
+        scrollToIntroBtn.addEventListener('dblclick', function() { // Add an event listener on double click
             window.location.href = 'http://localhost:8080/login';
         });
 
 
-        const texts = ["Guillaume", "Dorges", "Réseau", "Pentest"];
+        const texts = ["Guillaume Dorges", "Réseau", "Pentest"];
         let count = 0;
         let index = 0;
         let currentText = '';
         let letter = '';
 
         (function type() {
-            if (count === texts.length) {
+            if (count === texts.length) { // If we've reached the end of the array
                 count = 0;
             }
 
-            currentText = texts[count];
-            letter = currentText.slice(0, ++index);
+            currentText = texts[count]; // Get the current text
+            letter = currentText.slice(0, ++index); // Get the current letter
 
-            document.querySelector('.typewriter-text').textContent = letter;
+            document.querySelector('.typewriter-text').textContent = letter; // Set the text content of the h1 to the current letter
 
-            if (letter.length === currentText.length) {
+            if (letter.length === currentText.length) { // If we've reached the end of the current text
                 count++;
                 index = 0;
-                setTimeout(type, 2000);
+                setTimeout(type, 2000); // Wait 2 seconds
             } else {
-                setTimeout(type, 100);
+                setTimeout(type, 100); // Wait 100ms
             }
         })();
     </script>
